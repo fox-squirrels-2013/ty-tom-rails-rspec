@@ -1,0 +1,7 @@
+<%= form_for @post, url: admin_posts_path do |f| %>
+  <p><%= f.text_field :title, :placeholder => 'title' %></p>
+  <p><%= f.text_field :content, :placeholder => 'content' %></p>
+  <%= f.label :is_published, 'Published?' %>
+  <%= f.check_box :is_published %>
+  <%= f.submit 'Save' %>
+<% end %>
