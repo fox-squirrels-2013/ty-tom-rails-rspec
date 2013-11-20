@@ -9,17 +9,25 @@ feature 'Admin panel' do
     end
     
     it "can see a list of recent posts" do
-      visit admin_posts_url
-
-    page.should have_content "Wow, Such Post!"  
+      visit admin_posts_path
+      page.should have_content "Wow, Such Post!"  
     end
 
-    it "can edit a post by clicking the edit link next to a post"
+    it "can edit a post by clicking the edit link next to a post" do
+      visit admin_posts_path
+      click_link "Edit"
+      page.should have_content "Edit Wow, Such Post!"
+    end
 
-    it "can delete a post by clicking the delete link next to a post"
+    it "can delete a post by clicking the delete link next to a post" do
+       visit admin_posts_path
+       expect {
+         click_link 'Delete'
+       }.to change(Post, :count).by(-1)      
+    end
 
     it "can create a new post and view it" do
-       visit new_admin_post_url
+       visit new_admin_post_path
 
        expect {
          fill_in 'post_title',   with: "Hello world!"
