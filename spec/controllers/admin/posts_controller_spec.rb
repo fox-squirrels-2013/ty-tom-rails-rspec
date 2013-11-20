@@ -59,9 +59,8 @@ describe Admin::PostsController do
         post_ob = Post.create(post_params)
         p '*' * 20
         p post_ob.id
-        put :destroy, id: post_ob.id
+        delete :destroy, id: post_ob.id
         response.status.should eq 302
-        # expect( Post.where('title = ?', "Wow, such post!") ).to be_empty   
     end
   end
 end

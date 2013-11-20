@@ -2,7 +2,17 @@ require 'spec_helper'
 
 feature 'Admin panel' do
   context "on admin homepage" do
-    it "can see a list of recent posts"
+    
+    let! (:post) do
+      Post.create :title => "Wow, such post!", 
+               :content => "Woo, I like post"
+    end
+    
+    it "can see a list of recent posts" do
+      visit admin_posts_url
+
+    page.should have_content "Wow, Such Post!"  
+    end
 
     it "can edit a post by clicking the edit link next to a post"
 
